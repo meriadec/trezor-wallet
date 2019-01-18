@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import icons from 'config/icons';
 import colors from 'config/colors';
+import { KEY_CODE } from 'config/variables';
 
 import { H2 } from 'components/Heading';
 import P from 'components/Paragraph';
@@ -61,9 +62,16 @@ class ConfirmUnverifiedAddress extends PureComponent<Props> {
     keyboardHandler: (event: KeyboardEvent) => void;
 
     keyboardHandler(event: KeyboardEvent): void {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            this.verifyAddress();
+        switch (event.keyCode) {
+            case KEY_CODE.KEY_RETURN:
+                event.preventDefault();
+                this.verifyAddress();
+                break;
+            case KEY_CODE.KEY_ESCAPE:
+                this.props.onCancel();
+                break;
+            default:
+                break;
         }
     }
 

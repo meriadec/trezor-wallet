@@ -8,6 +8,8 @@ import P from 'components/Paragraph';
 import Loader from 'components/Loader';
 import Button from 'components/Button';
 
+import { KEY_CODE } from 'config/variables';
+
 import type { TrezorDevice } from 'flowtype';
 import type { Props as BaseProps } from '../../Container';
 
@@ -97,7 +99,7 @@ class RememberDevice extends PureComponent<Props, State> {
     }
 
     keyboardHandler(event: KeyboardEvent): void {
-        if (event.keyCode === 13) {
+        if (event.keyCode === KEY_CODE.KEY_RETURN) {
             event.preventDefault();
             this.forget();
         }

@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components';
 import colors from 'config/colors';
 import Icon from 'components/Icon';
 import icons from 'config/icons';
-import { FONT_SIZE } from 'config/variables';
+import { FONT_SIZE, KEY_CODE } from 'config/variables';
 
 type Props = {
     onClick: (event: KeyboardEvent) => void,
@@ -64,7 +64,7 @@ const Label = styled.div`
 
 class Checkbox extends PureComponent<Props> {
     handleKeyboard(event: KeyboardEvent) {
-        if (event.keyCode === 32) {
+        if (event.keyCode === KEY_CODE.KEY_SPACE) {
             this.props.onClick(event);
         }
     }

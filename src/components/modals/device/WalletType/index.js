@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components';
 
 import icons from 'config/icons';
 import colors from 'config/colors';
+import { KEY_CODE } from 'config/variables';
 
 import { H3 } from 'components/Heading';
 import P from 'components/Paragraph';
@@ -89,9 +90,16 @@ class WalletType extends PureComponent<Props> {
     }
 
     keyboardHandler(event: KeyboardEvent): void {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            this.props.onWalletTypeRequest(false);
+        switch (event.keyCode) {
+            case KEY_CODE.KEY_RETURN:
+                event.preventDefault();
+                this.props.onWalletTypeRequest(false);
+                break;
+            case KEY_CODE.KEY_ESCAPE:
+                this.props.onCancel();
+                break;
+            default:
+                break;
         }
     }
 

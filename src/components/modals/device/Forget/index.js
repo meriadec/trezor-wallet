@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { H3 } from 'components/Heading';
 import P from 'components/Paragraph';
 import Button from 'components/Button';
+import { KEY_CODE } from 'config/variables';
 
 import type { TrezorDevice } from 'flowtype';
 import type { Props as BaseProps } from '../../Container';
@@ -47,9 +48,16 @@ class ForgetDevice extends PureComponent<Props> {
     }
 
     keyboardHandler(event: KeyboardEvent) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            this.forget();
+        switch (event.keyCode) {
+            case KEY_CODE.KEY_RETURN:
+                event.preventDefault();
+                this.forget();
+                break;
+            case KEY_CODE.KEY_ESCAPE:
+                this.props.onCancel();
+                break;
+            default:
+                break;
         }
     }
 

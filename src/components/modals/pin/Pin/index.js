@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { KEY_CODE } from 'config/variables';
+
 import P from 'components/Paragraph';
 import { H2 } from 'components/Heading';
 import Link from 'components/Link';
@@ -89,50 +91,50 @@ class Pin extends PureComponent<Props, State> {
 
         event.preventDefault();
         switch (event.keyCode) {
-            case 13:
+            case KEY_CODE.KEY_RETURN:
                 // enter,
                 onPinSubmit(pin);
                 break;
             // backspace
-            case 8:
+            case KEY_CODE.KEY_BACK_SPACE:
                 this.onPinBackspace();
                 break;
 
             // numeric and numpad
-            case 49:
-            case 97:
+            case KEY_CODE.KEY_1:
+            case KEY_CODE.KEY_NUMPAD_1:
                 this.onPinAdd(1);
                 break;
-            case 50:
-            case 98:
+            case KEY_CODE.KEY_2:
+            case KEY_CODE.KEY_NUMPAD_2:
                 this.onPinAdd(2);
                 break;
-            case 51:
-            case 99:
+            case KEY_CODE.KEY_3:
+            case KEY_CODE.KEY_NUMPAD_3:
                 this.onPinAdd(3);
                 break;
-            case 52:
-            case 100:
+            case KEY_CODE.KEY_4:
+            case KEY_CODE.KEY_NUMPAD_4:
                 this.onPinAdd(4);
                 break;
-            case 53:
-            case 101:
+            case KEY_CODE.KEY_5:
+            case KEY_CODE.KEY_NUMPAD_5:
                 this.onPinAdd(5);
                 break;
-            case 54:
-            case 102:
+            case KEY_CODE.KEY_6:
+            case KEY_CODE.KEY_NUMPAD_6:
                 this.onPinAdd(6);
                 break;
-            case 55:
-            case 103:
+            case KEY_CODE.KEY_7:
+            case KEY_CODE.KEY_NUMPAD_7:
                 this.onPinAdd(7);
                 break;
-            case 56:
-            case 104:
+            case KEY_CODE.KEY_8:
+            case KEY_CODE.KEY_NUMPAD_8:
                 this.onPinAdd(8);
                 break;
-            case 57:
-            case 105:
+            case KEY_CODE.KEY_9:
+            case KEY_CODE.KEY_NUMPAD_9:
                 this.onPinAdd(9);
                 break;
             default: break;

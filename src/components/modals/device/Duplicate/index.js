@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import icons from 'config/icons';
 import colors from 'config/colors';
-import { FONT_SIZE } from 'config/variables';
+import { FONT_SIZE, KEY_CODE } from 'config/variables';
 
 import { H3 } from 'components/Heading';
 import P from 'components/Paragraph';
@@ -114,9 +114,18 @@ class DuplicateDevice extends PureComponent<Props, State> {
     input: ?HTMLInputElement;
 
     keyboardHandler(event: KeyboardEvent): void {
-        if (event.keyCode === 13 && !this.state.isUsed) {
-            event.preventDefault();
-            this.submit();
+        switch (event.keyCode) {
+            case KEY_CODE.KEY_RETURN:
+                if (!this.state.isUsed) {
+                    event.preventDefault();
+                    this.submit();
+                }
+                break;
+            case KEY_CODE.KEY_ESCAPE:
+                this.props.onCancel();
+                break;
+            default:
+                break;
         }
     }
 
