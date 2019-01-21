@@ -96,7 +96,9 @@ class WalletType extends PureComponent<Props> {
                 this.props.onWalletTypeRequest(false);
                 break;
             case KEY_CODE.KEY_ESCAPE:
-                this.props.onCancel();
+                if (this.props.device.state) {
+                    this.props.onCancel();
+                }
                 break;
             default:
                 break;
