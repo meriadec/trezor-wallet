@@ -8,7 +8,7 @@ import icons from 'config/icons';
 import colors from 'config/colors';
 import { KEY_CODE } from 'config/variables';
 
-import { H3 } from 'components/Heading';
+import { H2 } from 'components/Heading';
 import P from 'components/Paragraph';
 import Button from 'components/Button';
 import Tooltip from 'components/Tooltip';
@@ -37,8 +37,8 @@ const Header = styled.div`
     color: ${colors.TEXT_PRIMARY};
 `;
 
-const StyledHeading = styled(H3)`
-    padding-top: 30px;
+const StyledHeading = styled(H2)`
+    padding: 30px 48px 10px 48px;
 `;
 
 const StyledLink = styled(Link)`
@@ -115,7 +115,7 @@ class WalletType extends PureComponent<Props> {
                 { device.state && (
                     <StyledLink onClick={onCancel}>
                         <Icon
-                            size={20}
+                            size={24}
                             color={colors.TEXT_SECONDARY}
                             icon={icons.CLOSE}
                         />
