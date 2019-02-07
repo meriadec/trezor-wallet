@@ -7,7 +7,6 @@ import { FONT_SIZE, LEFT_NAVIGATION_ROW } from 'config/variables';
 import colors from 'config/colors';
 import Row from '../Row';
 
-
 const CoinNameWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -16,7 +15,7 @@ const CoinNameWrapper = styled.div`
 
 const RowCoinWrapper = styled.div`
     padding: ${LEFT_NAVIGATION_ROW.PADDING};
-    height: 50px;
+    height: 40px;
     display: block;
     font-size: ${FONT_SIZE.BIG};
     color: ${colors.TEXT_PRIMARY};

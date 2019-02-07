@@ -13,10 +13,16 @@ import RowCoin from '../RowCoin';
 
 import type { Props } from '../common';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+    margin-top: 7px;
+`;
 
 const ExternalWallet = styled.div`
     cursor: pointer;
+`;
+
+const StyledDivider = styled(Divider)`
+    margin: 10px 0;
 `;
 
 class CoinMenu extends PureComponent<Props> {
@@ -49,8 +55,23 @@ class CoinMenu extends PureComponent<Props> {
                 />
             );
 
-            if (coin.external) return <ExternalWallet key={coin.id} onClick={() => this.props.gotoExternalWallet(coin.id, coin.url)}>{row}</ExternalWallet>;
-            return <Link key={coin.id} href={coin.url} target="_top">{row}</Link>;
+            if (coin.external) {
+                return (
+                    <ExternalWallet
+                        key={coin.id}
+                        onClick={() => this.props.gotoExternalWallet(coin.id, coin.url)}
+                    >{row}
+                    </ExternalWallet>
+                );
+            }
+            return (
+                <Link
+                    key={coin.id}
+                    href={coin.url}
+                    target="_top"
+                >{row}
+                </Link>
+            );
         });
     }
 
@@ -71,7 +92,7 @@ class CoinMenu extends PureComponent<Props> {
                         />
                     </NavLink>
                 ))}
-                <Divider
+                <StyledDivider
                     testId="Main__page__coin__menu__divider"
                     textLeft="Other coins"
                     textRight="(You will be redirected)"

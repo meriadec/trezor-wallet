@@ -63,6 +63,7 @@ const Footer = styled.div.attrs(props => ({
 const Body = styled.div`
     flex: 1 0 auto;
     width: 320px;
+    margin: 0 0 10px 0;
     min-height: ${props => (props.minHeight ? `${props.minHeight}px` : '0px')};
 `;
 

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
     padding-right: 20px;
-    width: 40px;
+    width: 35px;
 `;
 
 const Logo = styled.img`
-    width: ${props => (props.hasLongIcon ? '15px' : '23px')};
+    width: ${props => (props.hasLongIcon ? '14px' : '20px')};
     margin-left: ${props => (props.hasLongIcon ? '3px' : '0px')};
     display: block;
 `;
