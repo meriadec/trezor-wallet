@@ -168,10 +168,10 @@ integration tests:
   script:
     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"'
     - rm -r ${SHARED_PATH} || true
-    - docker build -t wallet-emulator-bridge-tests .
+    - docker build -t wallet-emulator-bridge-tests --build-arg WALLET_URL='${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME} .
     - mkdir -p ${SHARED_PATH}/trezor-wallet/screenshots
     - mkdir -p ${SHARED_PATH}/trezor-wallet/videos
-    - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests
+    - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests'
     - find ${SHARED_PATH}
     - mkdir trezor-wallet
     - cp -r ${SHARED_PATH}/ trezor-wallet/

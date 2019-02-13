@@ -41,7 +41,7 @@ COPY package.json /trezor-wallet
 COPY yarn.lock /trezor-wallet
 RUN yarn
 COPY . /trezor-wallet
-RUN yarn run build:stable
+# RUN yarn run build:stable
 
 #
 # run

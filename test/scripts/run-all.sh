@@ -4,6 +4,9 @@
 cd "$(dirname "$0")"
 cd ..
 
+echo 'params'
+echo $@
+
 # run bridge
 cd /trezor-bridge && ./extracted/usr/bin/trezord -ed 21324:21325 -u=false &
 
