@@ -15,23 +15,23 @@ stages:
   - deploy
   - integration tests
 
-lint:
-  stage: test
-  script:
-    - yarn install
-    - yarn run lint
+# lint:
+#   stage: test
+#   script:
+#     - yarn install
+#     - yarn run lint
 
-flow:
-  stage: test
-  script:
-    - yarn install
-    - yarn run flow
+# flow:
+#   stage: test
+#   script:
+#     - yarn install
+#     - yarn run flow
 
-unit:
-  stage: test
-  script:
-    - yarn install
-    - yarn run test
+# unit:
+#   stage: test
+#   script:
+#     - yarn install
+#     - yarn run test
 
 build development:
   stage: build
