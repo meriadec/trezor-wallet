@@ -2,6 +2,7 @@ image: node:10.15.1
 
 variables:
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  DEV_PASS: "$DEV_PASS"
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -171,7 +172,7 @@ integration tests:
     - docker build --build-arg WALLET_URL='${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}' -t wallet-emulator-bridge-tests .
     - mkdir -p ${SHARED_PATH}/trezor-wallet/screenshots
     - mkdir -p ${SHARED_PATH}/trezor-wallet/videos
-    - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME} ${DEV_USER} ${DEV_PASS}
+    - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests ${DEV_USER} https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME} ${DEV_PASS}
     - find ${SHARED_PATH}
     - mkdir trezor-wallet
     - cp -r ${SHARED_PATH}/ trezor-wallet/
