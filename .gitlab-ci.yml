@@ -2,7 +2,8 @@ image: node:10.15.1
 
 variables:
   CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
-  DEV_PASS: "$DEV_PASS"
+  DEV_USER: ${DEV_USER}
+  DEV_PASS: ${DEV_PASS}
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
