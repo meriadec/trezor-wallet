@@ -172,7 +172,6 @@ integration tests:
     - mkdir -p ${SHARED_PATH}/trezor-wallet/screenshots
     - mkdir -p ${SHARED_PATH}/trezor-wallet/videos
     - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME} ${DEV_HTTP_USER} ${DEV_HTTP_PASS}
-    - find ${SHARED_PATH}
     - mkdir trezor-wallet
     - cp -r ${SHARED_PATH}/ trezor-wallet/
   artifacts:
