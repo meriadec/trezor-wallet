@@ -6,7 +6,7 @@ FROM python:latest
 RUN apt-get update
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y chromium libappindicator3-1 xdg-utils fonts-liberation nodejs wget dpkg git python python3 python3-pip xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-RUN npm install -g yarn
+RUN npm install -g yarn cypress
 
 RUN ln -s /usr/bin/chromium /usr/local/bin/chromium-browser
 
