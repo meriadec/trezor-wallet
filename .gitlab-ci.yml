@@ -80,7 +80,6 @@ build emulator and bridge image:
   stage: build
   when: manual
   script:
-    - docker pull $CONTAINER_NAME:latest || true
     - docker build --cache-from $CONTAINER_NAME:latest --tag $CONTAINER_NAME:$CI_COMMIT_SHA --tag $CONTAINER_NAME:latest .
     - docker push $CONTAINER_NAME:$CI_COMMIT_SHA
     - docker push $CONTAINER_NAME:latest
@@ -160,22 +159,38 @@ delete review:
   tags:
     - deploy
 
-integration tests:
-  image: docker:latest
-  services:
-    - docker:dind
+# integration tests:
+#   image: docker:latest
+#   services:
+#     - docker:dind
+#   stage: integration tests
+#   script:
+#     - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"'
+#     - rm -r ${SHARED_PATH} || true
+#     - docker build --build-arg WALLET_URL='${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}' -t wallet-emulator-bridge-tests .
+#     - mkdir -p ${SHARED_PATH}/trezor-wallet/screenshots
+#     - mkdir -p ${SHARED_PATH}/trezor-wallet/videos
+#     - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME} ${DEV_HTTP_USER} ${DEV_HTTP_PASS}
+#     - mkdir trezor-wallet
+#     - cp -r ${SHARED_PATH}/ trezor-wallet/
+#   artifacts:
+#     when: always
+#     expire_in: 1 week
+#     paths:
+#       - trezor-wallet/
+
+integration tests without wallet:
+  image: registry.corp.sldev.cz/trezor/trezor-wallet/emulator-bridge-tests:latest
   stage: integration tests
   script:
-    - 'export SHARED_PATH="$(dirname ${CI_PROJECT_DIR})/shared"'
-    - rm -r ${SHARED_PATH} || true
-    - docker build --build-arg WALLET_URL='${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}' -t wallet-emulator-bridge-tests .
-    - mkdir -p ${SHARED_PATH}/trezor-wallet/screenshots
-    - mkdir -p ${SHARED_PATH}/trezor-wallet/videos
-    - docker run --volume ${SHARED_PATH}/trezor-wallet/screenshots:/trezor-wallet/test/screenshots --volume ${SHARED_PATH}/trezor-wallet/videos:/trezor-wallet/test/videos --rm wallet-emulator-bridge-tests https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME} ${DEV_HTTP_USER} ${DEV_HTTP_PASS}
-    - mkdir trezor-wallet
-    - cp -r ${SHARED_PATH}/ trezor-wallet/
+    - cd /trezor-bridge && ./extracted/usr/bin/trezord -ed 21324:21325 -u=false &
+    - cd /trezor-emulator/trezor-core && PYOPT=0 ./emu.sh &
+    - mkdir -p /wallet && cd /wallet
+    - git clone https://github.com/trezor/trezor-wallet.git
+    - yarn
+    - DEV_USER=${DEV_HTTP_USER} DEV_PASSWORD=${DEV_HTTP_PASS} yarn run test-integration:gitlab -c baseUrl="${https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME}}"
   artifacts:
     when: always
     expire_in: 1 week
     paths:
-      - trezor-wallet/
+      - trezor-wallet/test/screenshots
