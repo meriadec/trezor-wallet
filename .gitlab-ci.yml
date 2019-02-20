@@ -179,7 +179,7 @@ delete review:
 #     paths:
 #       - trezor-wallet/
 
-integration tests without wallet:
+integration tests:
   image: registry.corp.sldev.cz/trezor/trezor-wallet/emulator-bridge-tests:latest
   stage: integration tests
   script:
