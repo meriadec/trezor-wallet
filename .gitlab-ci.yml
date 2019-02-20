@@ -71,7 +71,7 @@ build stable:
 
 build emulator and bridge image:
   variables:
-    CONTAINER_NAME: "$CI_REGISTRY/trezor/trezor-wallet/emulator-bridge-tests"
+    CONTAINER_NAME: "$CI_REGISTRY_IMAGE/emulator-bridge-tests"
   image: docker:latest
   services:
     - docker:dind
@@ -80,7 +80,7 @@ build emulator and bridge image:
   stage: build
   when: manual
   script:
-    - docker pull $CONTAINER_NAME:latest || true
+    - docker pull $CONTAINER_NAME:latest
     - docker build --cache-from $CONTAINER_NAME:latest --tag $CONTAINER_NAME:$CI_COMMIT_SHA --tag $CONTAINER_NAME:latest .
     - docker push $CONTAINER_NAME:$CI_COMMIT_SHA
     - docker push $CONTAINER_NAME:latest
