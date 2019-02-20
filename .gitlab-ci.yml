@@ -71,7 +71,7 @@ build stable:
 
 build emulator and bridge image:
   variables:
-    CONTAINER_NAME: "$CI_REGISTRY/trezor-wallet/emulator-bridge-tests"
+    CONTAINER_NAME: "$CI_REGISTRY/trezor/trezor-wallet/emulator-bridge-tests"
   image: docker:latest
   services:
     - docker:dind
