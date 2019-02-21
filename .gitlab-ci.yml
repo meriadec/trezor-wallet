@@ -7,7 +7,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
   - node_modules
-  - ${CYPRESS_CACHE_FOLDER}
+  # - ${CYPRESS_CACHE_FOLDER}
 
 stages:
   - test
